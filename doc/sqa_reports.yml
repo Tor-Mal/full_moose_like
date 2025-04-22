@@ -1,0 +1,6 @@
+Applications:
+    full_moose_like:
+        app_types:
+            - full_moose_likeApp
+        content_directory: ${ROOT_DIR}/doc/content
+        log_default: WARNING

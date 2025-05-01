@@ -22,8 +22,8 @@ create brick height 2 width 1 depth 8
 subtract body 5 from body 4
 webcut body 4 with plane xplane offset 0
 
-move Volume 7  x .19 include_merged
-move Volume 8  x -.19 include_merged
+move Volume 7  x .235  include_merged
+move Volume 8  x -.235 include_merged
 
 # === Mesh Jaw Surfaces and Volumes ===
 surface 36 size auto factor 1
@@ -77,6 +77,7 @@ set exodus netcdf4 off
 set large exodus file on
 export mesh "SiC_JandR.e" overwrite
 undo group end
+
 
 
 

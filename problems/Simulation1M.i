@@ -31,7 +31,7 @@
 [Functions]
   [move_in_x]
     type = ParsedFunction
-    expression = '0.01*t'  # Move right (+x), or use '-0.01*t' for left
+    expression = '0.1*t'  # Move right (+x), or use '-0.01*t' for left
   []
 
 []
@@ -156,7 +156,7 @@
   dt = 0.05
   dtmin = 0.05
   nl_abs_tol = 1e-10
-  num_steps = 500
+  num_steps = 50
 []
 
 
@@ -164,6 +164,14 @@
   execute_on = 'INITIAL TIMESTEP_END'
   exodus = true
   print_linear_residuals = false
+  interval = 25
+
+
+  [./checkpoint]
+    type = Checkpoint
+    interval = 10  # every 100 timesteps or whatever unit you set
+  [../]
+
 []
 
 

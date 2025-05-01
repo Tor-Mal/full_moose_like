@@ -1,1 +1,0 @@
-../flow_component_ns/rectangle.i

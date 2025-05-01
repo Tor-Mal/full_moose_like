@@ -1,1 +1,0 @@
-small_test_expanded_out.e

@@ -1,8 +1,0 @@
-[Tests]
-  [./DeformedGrain]
-    capabilities = 'method!=dbg'
-    type = 'Exodiff'
-    input = 'DeformedGrain.i'
-    exodiff = 'DeformedGrain_out.e'
-  [../]
-[]

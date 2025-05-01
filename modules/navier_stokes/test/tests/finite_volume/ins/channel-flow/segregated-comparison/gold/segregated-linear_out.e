@@ -1,1 +1,0 @@
-segregated-nonlinear_out.e

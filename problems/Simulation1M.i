@@ -31,7 +31,7 @@
 [Functions]
   [move_in_x]
     type = ParsedFunction
-    expression = '0.1*t'  # Move right (+x), or use '-0.01*t' for left
+    expression = '0.75*t'  # Move right (+x), or use '-0.01*t' for left
   []
 
 []
@@ -169,8 +169,7 @@
 
   [./checkpoint]
     type = Checkpoint
-    interval = 10  # every 10 timesteps it will cerate S
-
+    time_step_interval = 10  # every 10 timesteps it will cerate S
   [../]
 
 []

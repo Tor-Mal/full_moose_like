@@ -22,8 +22,8 @@ create brick height 2 width 1 depth 8
 subtract body 5 from body 4
 webcut body 4 with plane xplane offset 0
 
-move Volume 7  x .23  include_merged
-move Volume 8  x -.23 include_merged
+move Volume 7  x .22  include_merged
+move Volume 8  x -.22 include_merged
 
 # === Mesh Jaw Surfaces and Volumes ===
 surface 36 size auto factor 1

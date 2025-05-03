@@ -164,12 +164,13 @@
   execute_on = 'INITIAL TIMESTEP_END'
   exodus = true
   print_linear_residuals = false
-  interval = 25
+  time_step_interval = 25
 
 
   [./checkpoint]
     type = Checkpoint
-    interval = 10  # every 100 timesteps or whatever unit you set
+    interval = 10  # every 10 timesteps it will cerate S
+
   [../]
 
 []

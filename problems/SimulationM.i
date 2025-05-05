@@ -271,11 +271,12 @@
   print_linear_residuals = false
   execute_on = 'INITIAL TIMESTEP_END'
   interval = 10
-  
+
   [./checkpoint]
     type = Checkpoint
-    interval = 10  # every 100 timesteps or whatever unit you set
+    time_step_interval = 10  # every 10 timesteps it will cerate S
   [../]
+
 []
 
 [Contact]

@@ -3,7 +3,7 @@ reset
 
 # === Create Ring Geometry ===
 create cylinder height 1 radius 5
-create cylinder height 2 radius 3
+create cylinder height 2 radius 4
 subtract body 2 from body 1
 
 create brick height 2 width 2 depth 4
@@ -17,8 +17,8 @@ volume 1 size auto factor 2
 mesh volume 1
 
 # === Create Jaws ===
-create cylinder height 2 radius 2.8
-create brick height 2 width 1 depth 6
+create cylinder height 2 radius 3.5
+create brick height 2 width 1 depth 8
 subtract body 5 from body 4
 
 # === Mesh Jaw Surfaces and Volumes ===
@@ -72,3 +72,5 @@ set exodus netcdf4 off
 set large exodus file on
 export mesh "SiC_JandR.e" overwrite
 undo group end
+
+

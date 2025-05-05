@@ -21,6 +21,7 @@ create cylinder height 2 radius 3.5
 create brick height 2 width 1 depth 8
 subtract body 5 from body 4
 
+
 # === Mesh Jaw Surfaces and Volumes ===
 surface 36 size auto factor 1
 surface 32 size auto factor 1
@@ -72,5 +73,6 @@ set exodus netcdf4 off
 set large exodus file on
 export mesh "SiC_JandR.e" overwrite
 undo group end
+
 
 

@@ -270,7 +270,7 @@
   csv = true
   print_linear_residuals = false
   execute_on = 'INITIAL TIMESTEP_END'
-  interval = 10
+  time_step_interval = 10
 
   [./checkpoint]
     type = Checkpoint

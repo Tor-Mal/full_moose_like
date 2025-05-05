@@ -1,7 +1,7 @@
 [Mesh]
    [./mesh]
      type = FileMeshGenerator
-     file = SiCRotate15.e
+     file = SiC_JandR.e
    [../]
 []
 
@@ -270,7 +270,7 @@
   csv = true
   print_linear_residuals = false
   execute_on = 'INITIAL TIMESTEP_END'
-  interval = 10
+  time_step_interval = 10
 
   [./checkpoint]
     type = Checkpoint

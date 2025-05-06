@@ -226,7 +226,6 @@
 [Executioner]
   type = Transient
   solve_type = NEWTON
-  automatic_scailing = true
   dt    = 0.05
   dtmin = 0.01
   dtmax = .1

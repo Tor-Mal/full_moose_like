@@ -1,7 +1,7 @@
 [Mesh]
    [./mesh]
      type = FileMeshGenerator
-     file = SiCRotate15.e
+     file = SiC_JandR.e
    [../]
 []
 

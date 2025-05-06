@@ -12,7 +12,7 @@ subtract body 3 from body 1
 
 # === Mesh Ring ===
 volume 1 scheme tetmesh
-volume 1 size auto factor 3
+volume 1 size auto factor 4
 mesh volume 1
 
 # === Create Jaws ===

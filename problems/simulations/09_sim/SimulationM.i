@@ -187,11 +187,12 @@
 
   [./strain]
     type = ADComputeGreenLagrangeStrain
+
   [../]
 
   [./stress]
     type = ADComputeLinearElasticStress
-    block = 'Ring'
+    block = 'Ring JawR JawL'
   [../]
 
   [./fracture_energy_density]

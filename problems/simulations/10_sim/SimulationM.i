@@ -212,7 +212,7 @@
     type = ADGenericConstantMaterial
     prop_names = 'L'
     prop_values = 1.0
-    block = 'Ring'
+    block = 'Ring JawR JawL'
   [../]
 []
     

@@ -229,7 +229,7 @@
   dt = 0.01
   dtmin = 0.01
   nl_abs_tol = 1e-10
-  num_steps = 500
+  num_steps = 5000
 []
 
 [Postprocessors]
@@ -270,8 +270,6 @@
   csv = true
   print_linear_residuals = false
   execute_on = 'INITIAL TIMESTEP_END'
-  file_per_timestep = true
-  time_step_interval = 10
 
   [./checkpoint]
     type = Checkpoint

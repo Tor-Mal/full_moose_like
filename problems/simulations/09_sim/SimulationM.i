@@ -228,7 +228,8 @@
   type = petsc
   petsc_options_iname = '-ksp_type -pc_type -pc_factor_shift_type'
   petsc_options_value = 'gmres ilu NONZERO'
-[../]
+[]
+
 
 
 [Executioner]

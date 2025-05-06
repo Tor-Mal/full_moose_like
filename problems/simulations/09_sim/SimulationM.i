@@ -217,12 +217,6 @@
   [../]
 []
 
-[LinearSolver]
-  type = petsc
-  petsc_options_iname = '-ksp_type -pc_type -pc_factor_shift_type'
-  petsc_options_value = 'gmres ilu NONZERO'
-[]
-
 [Executioner]
   type = Transient
   solve_type = NEWTON
@@ -236,7 +230,6 @@
   optimal_iterations = 8
   dt_factor = 0.5
 []
-
 
 [Postprocessors]
   [./stress_xx]

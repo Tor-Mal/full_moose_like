@@ -228,8 +228,6 @@
   dtmax = 0.1
   nl_abs_tol = 1e-8
   num_steps = 1000
-  optimal_iterations = 8
-  dt_factor = 0.5
 []
 
 [Postprocessors]

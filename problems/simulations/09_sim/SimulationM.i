@@ -226,6 +226,8 @@
 [Executioner]
   type = Transient
   solve_type = NEWTON
+  petsc_options_iname = '-ksp_type -pc_type -pc_factor_shift_type'
+  petsc_options_value = 'gmres ilu NONZERO'
   dt = 0.05
   dtmin = 0.001
   dtmax = 0.1
@@ -234,6 +236,7 @@
   optimal_iterations = 8
   dt_factor = 0.5
 []
+
 
 [Postprocessors]
   [./stress_xx]

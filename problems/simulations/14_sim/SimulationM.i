@@ -217,8 +217,9 @@
 []
     
 [Preconditioning]
-  [./amg]
-    type = AMG
+  [./smp]
+    type = SMP
+    full = true
   [../]
 []
 
@@ -286,7 +287,7 @@
     penalty = 1e8
     normal_smoothing_distance = 1e-5
   [../]
-
+    
   [./jawL_to_ring]
     primary = InnerRing
     secondary = JawL

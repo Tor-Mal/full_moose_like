@@ -218,7 +218,7 @@
     
 [Preconditioning]
   [./smp]
-    type = SMP
+    type = AMG
     full = true
   [../]
 []

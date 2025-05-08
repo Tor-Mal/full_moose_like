@@ -1,0 +1,98 @@
+ # RESET
+reset
+
+# === Create Ring Geometry ===
+create cylinder height 1 radius 5
+create cylinder height 2 radius 4
+subtract body 2 from body 1
+
+create brick height 2 width 2 depth 6
+move volume 3 y 3.5 include_merged
+subtract body 3 from body 1
+
+# === Mesh Ring ===
+volume 1 scheme tetmesh
+volume 1 size auto factor 4
+mesh volume 1
+
+# === Create Jaws ===
+create cylinder height 1.2 radius 3.5
+create brick height 2 width 1 depth 8
+create cylinder height 2 radius 2.5
+
+subtract body 6 from body 4
+subtract body 5 from body 4
+
+webcut body 4 with plane xplane offset 0
+
+# ===Move Jaws ===
+move Volume 8  x .4995 include_merged
+move Volume 9  x -.4995 include_merged
+
+# === Mesh Jaw Surfaces and Volumes ===
+volume 9 scheme tetmesh
+volume 8 scheme tetmesh
+
+surface 32 size auto factor 2
+surface 36 size auto factor 2
+
+mesh surface 36
+mesh surface 32
+
+
+volume 9 size auto factor 5
+volume 8 size auto factor 5
+mesh volume 9
+mesh volume 8
+
+
+# === Define Side Sets (for MOOSE BCs & Contact) ===
+undo group begin
+sideset 4 add surface 41
+sideset 4 name "JawL"
+
+sideset 5 add surface 43
+sideset 5 name "JawR"
+
+sideset 8 add surface 19
+sideset 8 name "InnerRing"
+
+sideset 7 add surface 20
+sideset 7 name "outer"
+
+sideset 9 add surface 16
+sideset 9 name "InnerNotch
+undo group end
+
+# === Define Node Sets (optional, not used for BCs) ===
+nodeset 10 add volume 1
+nodeset 10 name "Ring"
+
+nodeset 1 add volume 8
+nodeset 1 name "JawR"
+
+# === Define Blocks (Material Assignments) ===
+block 10 add volume 1
+block 10 name "Ring"
+
+block 20 add volume 8
+block 20 name "JawR"
+
+block 30 add volume 9
+block 30 name "JawL"
+
+# === Export to Exodus ===
+undo group begin
+set exodus netcdf4 off
+set large exodus file on
+export mesh "SiC_JandR.e" overwrite
+undo group end
+
+
+
+
+
+
+
+
+

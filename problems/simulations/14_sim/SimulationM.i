@@ -217,8 +217,8 @@
 []
     
 [Preconditioning]
-  [./boomeramg]
-    type = BoomerAMG
+  [./amg]
+    type = AMG
   [../]
 []
 

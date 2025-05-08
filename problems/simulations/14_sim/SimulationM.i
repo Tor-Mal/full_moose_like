@@ -217,9 +217,8 @@
 []
     
 [Preconditioning]
-  [./smp]
-    type = AMG
-    full = true
+  [./boomeramg]
+    type = BoomerAMG
   [../]
 []
 

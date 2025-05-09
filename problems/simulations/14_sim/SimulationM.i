@@ -237,32 +237,32 @@
   [./stress_xx]
     type = ElementAverageValue
     variable = stress_xx
-    block = Ring
+    block = RingR RingL
   [../]
   [./stress_yy]
     type = ElementAverageValue
     variable = stress_yy
-    block = Ring
+    block = RingR RingL
   [../]
   [./stress_xy]
     type = ElementAverageValue
     variable = stress_xy
-    block = Ring
+    block = RingR RingL
   [../]
   [./strain_xx]
     type = ElementAverageValue
     variable = strain_xx
-    block = Ring
+    block = RingR RingL
   [../]
   [./strain_yy]
     type = ElementAverageValue
     variable = strain_yy
-    block = Ring
+    block = RingR RingL
   [../]
   [./strain_xy]
     type = ElementAverageValue
     variable = strain_xy
-    block = Ring
+    block = RingR RingL
   [../]
 []
 

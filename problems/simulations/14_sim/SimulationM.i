@@ -194,6 +194,7 @@
 
   [./strain]
     type = ADComputeGreenLagrangeStrain
+    block = 'RingR RingL JawR JawL'
   [../]
   [./stress]
     type = ADComputeLinearElasticStress
@@ -237,32 +238,32 @@
   [./stress_xx]
     type = ElementAverageValue
     variable = stress_xx
-    block = RingR RingL
+    block = 'RingR RingL'
   [../]
   [./stress_yy]
     type = ElementAverageValue
     variable = stress_yy
-    block = RingR RingL
+    block = 'RingR RingL'
   [../]
   [./stress_xy]
     type = ElementAverageValue
     variable = stress_xy
-    block = RingR RingL
+    block = 'RingR RingL'
   [../]
   [./strain_xx]
     type = ElementAverageValue
     variable = strain_xx
-    block = RingR RingL
+    block = 'RingR RingL'
   [../]
   [./strain_yy]
     type = ElementAverageValue
     variable = strain_yy
-    block = RingR RingL
+    block = 'RingR RingL'
   [../]
   [./strain_xy]
     type = ElementAverageValue
     variable = strain_xy
-    block = RingR RingL
+    block = 'RingR RingL'
   [../]
 []
 

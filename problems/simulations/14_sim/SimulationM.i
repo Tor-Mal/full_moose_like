@@ -21,7 +21,7 @@
     order = FIRST
     family = LAGRANGE
     initial_condition = 0.0
-    block = 'Ring'
+    block = 'RingR RingL'
   [../]
 
 []
@@ -127,7 +127,7 @@
     type = ADAllenCahn
     variable = damage
     f_name = fracture_energy_density
-    block = 'Ring'
+    block = 'RingR RingL'
   [../]
 
 []
@@ -189,7 +189,7 @@
     type = ADComputeIsotropicElasticityTensor
     youngs_modulus = 410e9
     poissons_ratio = 0.14
-    block = 'Ring JawR JawL'
+    block = 'RingR RingL JawR JawL'
   [../]
 
   [./strain]
@@ -197,7 +197,7 @@
   [../]
   [./stress]
     type = ADComputeLinearElasticStress
-    block = 'Ring JawR JawL'
+    block = 'RingR RingL JawR JawL'
   [../]
 
   [./fracture_energy_density]
@@ -205,14 +205,14 @@
     expression = '1000 * damage^2'
     property_name = fracture_energy_density
     coupled_variables = 'damage'
-    block = 'Ring'
+    block = 'RingR RingL'
  [../]
 
   [./L]
     type = ADGenericConstantMaterial
     prop_names = 'L'
     prop_values = 1.0
-    block = 'Ring JawR JawL'
+    block = 'RingR RingL JawR JawL'
   [../]
 []
     
@@ -225,7 +225,7 @@
 
 [Executioner]
   type = Transient
-  solve_type = PJFNK
+  solve_type = NEWTON
   dt    = 0.01
   dtmin = 0.001
   dtmax = .1
@@ -280,16 +280,16 @@
 []
 
 [Contact]
-  [./jawR_to_ring]
-    primary = InnerRing
+  [./jawR_to_ringR]
+    primary = InnerRingR
     secondary = JawR
     displacements = 'disp_x disp_y disp_z'
     penalty = 1e8
     normal_smoothing_distance = 1e-5
   [../]
-    
-  [./jawL_to_ring]
-    primary = InnerRing
+
+  [./jawL_to_ringL]
+    primary = InnerRingL
     secondary = JawL
     displacements = 'disp_x disp_y disp_z'
     penalty = 1e8

@@ -285,9 +285,9 @@
     primary = InnerRingR
     secondary = JawR
     displacements = 'disp_x disp_y disp_z'
-    penalty = 1e12
+    penalty = 2e10
     normal_smoothing_distance = 1e-1
-    use_displaced_mesh = true
+    normalize_penalty = true
   [../]
 
   [./jawL_to_ringL]
@@ -296,7 +296,7 @@
     displacements = 'disp_x disp_y disp_z'
     penalty = 1e12
     normal_smoothing_distance = 1e-1
-    use_displaced_mesh = true
+    normalize_penalty = true
   [../]
 []
 

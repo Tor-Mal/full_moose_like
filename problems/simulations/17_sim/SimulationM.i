@@ -272,7 +272,7 @@
   csv = true
   print_linear_residuals = false
   execute_on = 'INITIAL TIMESTEP_END'
-  time_step_interval = 20
+  time_step_interval = 5
   [./checkpoint]
     type = Checkpoint
     time_step_interval = 10  # every 10 timesteps it will cerate S

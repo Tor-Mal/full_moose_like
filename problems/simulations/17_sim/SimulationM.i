@@ -56,7 +56,7 @@
 [Functions]
   [./move_in_x]
     type = ParsedFunction
-    expression = '0.01*t'  # Move right (+x), or use '-0.01*t' for left
+    expression = '0.1*t'  # Move right (+x), or use '-0.01*t' for left
   [../]
 
 []

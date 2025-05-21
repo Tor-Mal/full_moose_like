@@ -289,7 +289,7 @@
     primary = InnerRingR
     secondary = JawR
     displacements = 'disp_x disp_y disp_z'
-    penalty = 2e10
+    penalty = 200e9
     normal_smoothing_distance = 1e-1
     normalize_penalty = true
   [../]
@@ -298,7 +298,7 @@
     primary = InnerRingL
     secondary = JawL
     displacements = 'disp_x disp_y disp_z'
-    penalty = 1e12
+    penalty = 200e9
     normal_smoothing_distance = 1e-1
     normalize_penalty = true
   [../]

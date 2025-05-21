@@ -18,8 +18,8 @@
   [generated]
     type = GeneratedMeshGenerator
     dim = 2
-    nx = 10
-    ny = 10
+    nx = 100
+    ny = 100
     xmax = 2
     ymax = 1
   []
@@ -30,6 +30,7 @@
         [QuasiStatic]
             [all]
                 add_variables = true
+                strain = FINITE
             []
         []
     []
@@ -59,11 +60,11 @@
 [Materials]
   [elasticity]
     type = ComputeIsotropicElasticityTensor
-    youngs_modulus = 1e9
+    youngs_modulus = 1e8
     poissons_ratio = 0.3
   []
   [stress]
-    type = ComputeLinearElasticStress
+    type = ComputeFiniteStrainElasticStress
   []
 []
 

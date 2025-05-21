@@ -239,6 +239,7 @@
 []
 
 [Postprocessors]
+
   [./stress_xx]
     type = ElementAverageValue
     variable = stress_xx
@@ -254,6 +255,8 @@
     variable = stress_xy
     block = 'RingR RingL'
   [../]
+
+    
   [./strain_xx]
     type = ElementAverageValue
     variable = strain_xx
@@ -289,7 +292,7 @@
     primary = InnerRingR
     secondary = JawR
     displacements = 'disp_x disp_y disp_z'
-    penalty = 200e9
+    penalty = 410e9
     normal_smoothing_distance = 1e-1
     normalize_penalty = true
   [../]
@@ -298,7 +301,7 @@
     primary = InnerRingL
     secondary = JawL
     displacements = 'disp_x disp_y disp_z'
-    penalty = 200e9
+    penalty = 410e9
     normal_smoothing_distance = 1e-1
     normalize_penalty = true
   [../]

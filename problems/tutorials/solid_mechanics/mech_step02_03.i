@@ -1,50 +1,38 @@
-#
-# Initial single block mechanics input
-# https://mooseframework.inl.gov/modules/solid_mechanics/tutorials/introduction/step01.html
-#
-
 [GlobalParams]
   displacements = 'disp_x disp_y'
-[]
-
-[Functions]
-  [applied_pressure_function]
-    type = ParsedFunction
-    value = 1e7*t
-  []
 []
 
 [Mesh]
   [generated]
     type = GeneratedMeshGenerator
     dim = 2
-    nx = 100
-    ny = 100
+    nx = 10
+    ny = 10
     xmax = 2
     ymax = 1
   []
 []
 
-[Physics]
-    [SolidMechanics]
-        [QuasiStatic]
-            [all]
-                add_variables = true
-                strain = FINITE
-                use_automatic_differentiation = true
-            []
-        []
-    []
+[Physics/SolidMechanics/QuasiStatic]
+  [all]
+    add_variables = true
+    # we added this in the first exercise problem
+    strain = FINITE
+    # enable the use of automatic differentiation objects
+    use_automatic_differentiation = true
+  []
 []
 
 [BCs]
   [bottom_x]
+    # we use the AD version of this boundary condition here...
     type = ADDirichletBC
     variable = disp_x
     boundary = bottom
     value = 0
   []
   [bottom_y]
+    # ...and here
     type = ADDirichletBC
     variable = disp_y
     boundary = bottom
@@ -53,7 +41,8 @@
   [Pressure]
     [top]
       boundary = top
-      function = applied_pressure_function 
+      function = 1e7*t
+      # make the action add AD versions of the boundary condition objects
       use_automatic_differentiation = true
     []
   []
@@ -70,16 +59,9 @@
   []
 []
 
-[Preconditioning]
-   [SMP]
-     type = SMP
-     full = true
-   []
-[]
-
 [Executioner]
   type = Transient
-  # we chose a direct solver here
+  # MOOSE automatically sets up SMP/full=true with NEWTON
   solve_type = NEWTON
   petsc_options_iname = '-pc_type'
   petsc_options_value = 'lu'

@@ -23,22 +23,23 @@
     xmax = 2
     ymax = 1
   []
-[]
 
-[block1]
-  type = SubdomainBoundingBoxGenerator
-  input       = generated
-  block_id    = 1
-  bottom_left = '0 0 0'
-  top_right   = '1 1 0'
-[]
 
-[block2]
-  type = SubdomainBoundingBoxGenerator
-  input       = generated
-  block_id    = 1
-  bottom_left = '1 0 0'
-  top_right   = '2 1 0'
+  [block1]
+    type = SubdomainBoundingBoxGenerator
+    input       = generated
+    block_id    = 1
+    bottom_left = '0 0 0'
+    top_right   = '1 1 0'
+  []
+
+  [block2]
+    type = SubdomainBoundingBoxGenerator
+    input       = generated
+    block_id    = 1
+    bottom_left = '1 0 0'
+    top_right   = '2 1 0'
+  []
 []
 
 [Physics]

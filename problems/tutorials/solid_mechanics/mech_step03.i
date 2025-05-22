@@ -18,7 +18,7 @@
   [generated]
     type = GeneratedMeshGenerator
     dim = 2
-    nx = 20
+    nx = 40
     ny = 20
     xmax = 2
     ymax = 1
@@ -35,8 +35,8 @@
 
   [block2]
     type = SubdomainBoundingBoxGenerator
-    input       = generated
-    block_id    = 1
+    input       = block1
+    block_id    = 2
     bottom_left = '1 0 0'
     top_right   = '2 1 0'
   []
@@ -47,8 +47,8 @@
         [QuasiStatic]
             [all]
                 add_variables = true
-                strain = FINITE
-                use_automatic_differentiation = true
+                # strain = FINITE
+                # use_automatic_differentiation = true
             []
         []
     []
@@ -77,11 +77,21 @@
 []
 
 [Materials]
-  [elasticity]
+
+  [elasBlock1]
     type = ADComputeIsotropicElasticityTensor
-    youngs_modulus = 1e8
+    youngs_modulus = 1e9
     poissons_ratio = 0.3
+    block = 1
   []
+  
+  [elasBlock2]
+    type = ADComputeIsotropicElasticityTensor
+    youngs_modulus = 1e9
+    poissons_ratio = 0.3
+    block = 2
+  []
+  
   [stress]
     type = ADComputeFiniteStrainElasticStress
   []

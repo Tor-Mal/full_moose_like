@@ -18,8 +18,8 @@
   [generated]
     type = GeneratedMeshGenerator
     dim = 2
-    nx = 100
-    ny = 100
+    nx = 20
+    ny = 20
     xmax = 2
     ymax = 1
   []

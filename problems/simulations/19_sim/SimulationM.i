@@ -186,18 +186,18 @@
 
 [Materials] #SiC values
   [./elasticity_tensor]
-    type = ADComputeIsotropicElasticityTensor
+    type = ComputeIsotropicElasticityTensor
     youngs_modulus = 410e9
     poissons_ratio = 0.14
     block = 'RingR RingL JawR JawL'
   [../]
 
-  [./strain]
-    type = ADComputeGreenLagrangeStrain
-    block = 'RingR RingL JawR JawL'
-  [../]
+  # [./strain]
+  #   type = ComputeIsotropicElasticityTensor
+  #   block = 'RingR RingL JawR JawL'
+  # [../]
   [./stress]
-    type = ADComputeLinearElasticStress
+    type = ComputeFiniteStrainElastistraincStress
     block = 'RingR RingL JawR JawL'
   [../]
 
@@ -209,12 +209,12 @@
     block = 'RingR RingL'
  [../]
 
-  [./L]
-    type = ADGenericConstantMaterial
-    prop_names = 'L'
-    prop_values = 1.0
-    block = 'RingR RingL JawR JawL'
-  [../]
+  # [./L]
+  #   type = ADGenericConstantMaterial
+  #   prop_names = 'L'
+  #   prop_values = 1.0
+  #   block = 'RingR RingL JawR JawL'
+  # [../]
 []
     
 [Preconditioning]
@@ -227,6 +227,9 @@
 [Executioner]
   type = Transient
   solve_type = NEWTON
+  line_search = none
+  petsc_options_iname = '-pc_type'
+  petsc_options_value = 'lu'
   dt    = 0.01
   dtmin = 0.001
   dtmax = .1

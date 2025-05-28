@@ -3,6 +3,7 @@
      type = FileMeshGenerator
      file = SiC_JandR.e
    [../]
+  patch_update_strategy = iteration
 []
 
 
@@ -64,20 +65,20 @@
 
 [BCs]
   ### Move inner jaw in X direction ###
-  [./move_red_x]
+  [./Move_jawR_x]
     type = FunctionDirichletBC
     variable = disp_x
     boundary = 'JawR'
     function = move_in_x
   [../]
 
-  [./lock_red_y]
+  [./fix_jawR_y]
     type = DirichletBC
     variable = disp_y
     boundary = 'JawR'
     value = 0
   [../]
-  [./lock_red_z]
+  [./fix_jawR_z]
     type = DirichletBC
     variable = disp_z
     boundary = 'JawR'

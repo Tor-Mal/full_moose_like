@@ -201,13 +201,13 @@
     block = 'RingR RingL JawR JawL'
   [../]
 
-#   [./fracture_energy_density]
-#     type = ADDerivativeParsedMaterial
-#     expression = '1000 * damage^2'
-#     property_name = fracture_energy_density
-#     coupled_variables = 'damage'
-#     block = 'RingR RingL'
-#  [../]
+  #   [./fracture_energy_density]
+  #     type = ADDerivativeParsedMaterial
+  #     expression = '1000 * damage^2'
+  #     property_name = fracture_energy_density
+  #     coupled_variables = 'damage'
+  #     block = 'RingR RingL'
+  #  [../]
 
   # [./L]
   #   type = ADGenericConstantMaterial
@@ -228,8 +228,8 @@
   type = Transient
   solve_type = NEWTON
   line_search = none
-  petsc_options_iname = '-pc_type'
-  petsc_options_value = 'lu'
+  # petsc_options_iname = '-pc_type'
+  # petsc_options_value = 'lu'
   dt    = 0.01
   dtmin = 0.001
   dtmax = .1
@@ -294,20 +294,20 @@
   [./jawR_to_ringR]
     primary = InnerRingR
     secondary = JawR
-    displacements = 'disp_x disp_y disp_z'
+    # displacements = 'disp_x disp_y disp_z'
     model = frictionless
     penalty = 410e9
-    normal_smoothing_distance = 1e-1
+    # normal_smoothing_distance = 1e-1
     normalize_penalty = true
   [../]
 
   [./jawL_to_ringL]
     primary = InnerRingL
     secondary = JawL
-    displacements = 'disp_x disp_y disp_z'
+    # displacements = 'disp_x disp_y disp_z'
     model = frictionless
     penalty = 410e9
-    normal_smoothing_distance = 1e-1
+    # normal_smoothing_distance = 1e-1
     normalize_penalty = true
   [../]
 []

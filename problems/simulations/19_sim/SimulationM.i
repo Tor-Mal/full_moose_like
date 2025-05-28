@@ -186,18 +186,18 @@
 
 [Materials] #SiC values
   [./elasticity_tensor]
-    type = ComputeIsotropicElasticityTensor
+    type = ADComputeIsotropicElasticityTensor
     youngs_modulus = 410e9
     poissons_ratio = 0.14
     block = 'RingR RingL JawR JawL'
   [../]
 
   # [./strain]
-  #   type = ComputeIsotropicElasticityTensor
+  #   type = ADComputeGreenLagrangeStrain
   #   block = 'RingR RingL JawR JawL'
   # [../]
   [./stress]
-    type = ComputeFiniteStrainElastistraincStress
+    type = ADComputeLinearElasticStress
     block = 'RingR RingL JawR JawL'
   [../]
 

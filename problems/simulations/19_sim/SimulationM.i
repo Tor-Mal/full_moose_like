@@ -17,12 +17,12 @@
   [../]
   [./disp_z]
   [../]
-  [./damage]
-    order = FIRST
-    family = LAGRANGE
-    initial_condition = 0.0
-    block = 'RingR RingL'
-  [../]
+  # [./damage]
+  #   order = FIRST
+  #   family = LAGRANGE
+  #   initial_condition = 0.0
+  #   block = 'RingR RingL'
+  # [../]
 
 []
 
@@ -123,12 +123,12 @@
     component = 2
   [../]
 
-  [./damage_eq]
-    type = ADAllenCahn
-    variable = damage
-    f_name = fracture_energy_density
-    block = 'RingR RingL'
-  [../]
+  # [./damage_eq]
+  #   type = ADAllenCahn
+  #   variable = damage
+  #   f_name = fracture_energy_density
+  #   block = 'RingR RingL'
+  # [../]
 
 []
 
@@ -192,22 +192,22 @@
     block = 'RingR RingL JawR JawL'
   [../]
 
-  # [./strain]
-  #   type = ADComputeGreenLagrangeStrain
-  #   block = 'RingR RingL JawR JawL'
-  # [../]
+  [./strain]
+    type = ADComputeGreenLagrangeStrain
+    block = 'RingR RingL JawR JawL'
+  [../]
   [./stress]
     type = ADComputeLinearElasticStress
     block = 'RingR RingL JawR JawL'
   [../]
 
-  [./fracture_energy_density]
-    type = ADDerivativeParsedMaterial
-    expression = '1000 * damage^2'
-    property_name = fracture_energy_density
-    coupled_variables = 'damage'
-    block = 'RingR RingL'
- [../]
+#   [./fracture_energy_density]
+#     type = ADDerivativeParsedMaterial
+#     expression = '1000 * damage^2'
+#     property_name = fracture_energy_density
+#     coupled_variables = 'damage'
+#     block = 'RingR RingL'
+#  [../]
 
   # [./L]
   #   type = ADGenericConstantMaterial

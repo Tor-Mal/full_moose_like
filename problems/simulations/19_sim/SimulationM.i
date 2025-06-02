@@ -231,9 +231,9 @@
   line_search = none
   # petsc_options_iname = '-pc_type'
   # petsc_options_value = 'lu'
-  dt    = 0.01
+  dt    = 1
   dtmin = 0.001
-  dtmax = .1
+  dtmax = 2
   nl_abs_tol = 1e-6
   num_steps = 50000
   [Predictor]
@@ -283,11 +283,11 @@
   csv = true
   print_linear_residuals = false
   execute_on = 'INITIAL TIMESTEP_END'
-  time_step_interval = 5
-  [./checkpoint]
-    type = Checkpoint
-    time_step_interval = 10  # every 10 timesteps it will cerate S
-  [../]
+  time_step_interval = 2
+  # [./checkpoint]
+  #   type = Checkpoint
+  #   time_step_interval = 10  # every 10 timesteps it will cerate S
+  # [../]
 
 []
 

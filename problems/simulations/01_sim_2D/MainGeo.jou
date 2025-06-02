@@ -1,0 +1,94 @@
+ # RESET
+reset
+
+# === Create Ring Geometry ===
+create surface circle radius 5 zplane
+create surface circle radius 4 zplane
+subtract surface 2 from body 1
+
+
+create brick height 2 width 2 depth 6
+move volume 3 y 3.5 include_merged
+subtract body 3 from body 1
+
+
+webcut body 1 with plane xplane offset 0 imprint merge
+
+# === Mesh Ring ===
+# surface 11 scheme tetmesh
+# surface 12 scheme tetmesh
+
+surface 11 size auto factor 4
+surface 12 size auto factor 4
+
+mesh surface 11
+mesh surface 12
+
+
+# === Create Jaws ===
+create surface circle radius 3.5 zplane
+create brick height 2 width 1 depth 8
+subtract Volume 6 from body 5 
+
+webcut body 5 with plane xplane offset 0
+
+
+# ===Move Jaws ===
+move body 5  x .4 include_merged
+move body 7  x -.4 include_merged
+
+
+# === Mesh Jaw Surfaces and Volumes ===
+
+surface 20 size auto factor 4
+surface 21 size auto factor 4
+
+mesh surface 20
+mesh surface 21
+
+
+# === Define Side Sets (for MOOSE BCs & Contact) ===
+
+sideset 4 add  surface 21
+sideset 4 name "JawL"
+
+sideset 5 add surface 20
+sideset 5 name "JawR"
+
+sideset 8 add surface 12
+sideset 8 name "InnerRingL"
+
+sideset 9 add surface 11
+sideset 9 name "InnerRingR"
+
+# === Define Node Sets (optional, not used for BCs) ===
+
+nodeset 10 add Curve 42
+nodeset 10 name "LJawL"
+
+nodeset 11 add Curve 41
+nodeset 11 name "RJawL"
+
+nodeset 12 add Curve 39
+nodeset 12 name "LJawR"
+
+nodeset 13 add Curve 40
+nodeset 13 name "RJawR"
+
+nodeset 14 add Curve 24
+nodeset 14 name "IRingL"
+
+nodeset 15 add Curve 22
+nodeset 15 name "IRingR"
+
+
+# === Export to Exodus ===
+undo group begin
+set exodus netcdf4 off
+set large exodus file on
+export mesh "SiC_JandR.e" overwrite
+undo group end
+
+
+
+

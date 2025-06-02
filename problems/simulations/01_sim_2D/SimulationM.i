@@ -7,52 +7,27 @@
     displacements = 'disp_x disp_y'
 []
   
-[Mesh]
-  [generated1]
-    type = GeneratedMeshGenerator
-    dim = 2
-    nx = 5
-    ny = 20
-    xmin =  -.7
-    xmax = -.2
-    ymax = 5
-    bias_y = 0.9
-    boundary_name_prefix = pillar1
+[Functions]
+  [move_in_+x]
+    type = ParsedFunction
+    expression = '0.1*t'  # Move right (+x), or use '-0.01*t' for left
   []
-
-  [generated2]
-    type = GeneratedMeshGenerator
-    dim = 2
-    nx = 5
-    ny = 20
-    xmin = 0
-    xmax = 0.5
-    ymax = 5
-    bias_y = 0.9
-    boundary_name_prefix = pillar2
-    boundary_id_offset = 4
+  [move_in_-x]
+    type = ParsedFunction
+    expression = '-0.1*t'  # Move right (+x), or use '-0.01*t' for left
   []
-
-  [generated3]
-    type = GeneratedMeshGenerator
-    dim = 2
-    nx = 5
-    ny = 20
-    xmin = .7
-    xmax = 1.2
-    ymax = 5
-    bias_y = 0.9
-    boundary_name_prefix = pillar3
-    boundary_id_offset = 8
-  []
-
-  [collect_meshes]
-    type = MeshCollectionGenerator
-    inputs = 'generated1 generated2 generated3'
-  []
-
-  patch_update_strategy = iteration
 []
+
+[Mesh]
+  [mesh]
+    type = FileMeshGenerator
+    file = SiC_JandR.e
+  []
+  patch_update_strategy = iteration
+  construct_side_list_from_node_list = true
+
+[]
+
 
 [Physics/SolidMechanics/QuasiStatic]
   [all]
@@ -63,53 +38,75 @@
 []
 
 [Contact]
-  [pillars1]
-    primary = pillar1_right
-    secondary = pillar2_left
+  [jawR_to_ringR]
+    primary = IRingR
+    secondary = RJawR
     model = frictionless
-    formulation = penalty
-    penalty = 1e9
+    penalty = 410e8
     normalize_penalty = true
   []
-  [pillars2]
-    primary = pillar2_right
-    secondary = pillar3_left
+
+  [jawL_to_ringL]
+    primary = IRingL
+    secondary = LJawL
     model = frictionless
-    formulation = penalty
-    penalty = 1e9
+    penalty = 410e8
     normalize_penalty = true
   []
 []
 
 [BCs]
-  [bottom_x]
-    type = DirichletBC
+  [Move_jawR_x]
+    type = FunctionDirichletBC
+    boundary = 'LJawR'
+    function = move_in_+x
     variable = disp_x
-    boundary = 'pillar1_bottom pillar2_bottom pillar3_bottom'
-    value = 0
   []
-  [bottom_y]
+  [Move_jawL_x]
+    type = FunctionDirichletBC
+    boundary = 'RJawL'
+    function = move_in_-x
+    variable = disp_x
+  []
+  [Fix_jaw_y]
     type = DirichletBC
+    boundary = 'LJawR RJawL'
     variable = disp_y
-    boundary = 'pillar1_bottom pillar2_bottom pillar3_bottom'
     value = 0
   []
-  [Pressure]
-    [sides]
-      boundary = 'pillar1_left pillar2_right pillar3_right'
-      # we square time here to get a more progressive loading curve
-      # (more pressure later on once contact is established)
-      function = 1e4*t^2
-    []
+  # [Fix_jawL_x]
+  #   type = DirichletBC
+  #   boundary = 'RJawL'
+  #   variable = disp_x
+  #   value = 0
+  # []
+  # [Fix_jawL_y]
+  #   type = DirichletBC
+  #   boundary = 'RJawL'
+  #   variable = disp_y
+  #   value = 0
+  # []
+  [top_x]
+    type = DisplacementAboutAxis
+    boundary = 'RingSeam'
+    function = '0'
+    angle_units = degrees
+    axis_origin = '0 0 0'
+    axis_direction = '0 0 1.0'
+    component = 0
+    variable = disp_x
   []
+
 []
 
 [Materials]
+  
   [elasticity]
     type = ComputeIsotropicElasticityTensor
-    youngs_modulus = 1e9
-    poissons_ratio = 0.3
+    youngs_modulus = 410e9
+    poissons_ratio = 0.14
   []
+
   [stress]
     type = ComputeFiniteStrainElasticStress
   []
@@ -121,16 +118,20 @@
   line_search = none
   petsc_options_iname = '-pc_type'
   petsc_options_value = 'lu'
-  end_time = 20
-  dt = 0.5
+  end_time = 10
+  dt = 0.1
   [Predictor]
     type = SimplePredictor
     scale = 1
+
   []
+
 []
 
 [Outputs]
   exodus = true
   print_linear_residuals = false
   perf_graph = true
+  time_step_interval = 1
+
 []

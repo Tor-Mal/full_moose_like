@@ -1,4 +1,5 @@
 
+
 [GlobalParams]
     displacements = 'disp_x disp_y disp_z'
 []
@@ -23,6 +24,68 @@
 
 []
 
+[AuxVariables]
+  [stress_xx]
+    order = CONSTANT
+    family = MONOMIAL
+  []
+  [stress_yy]
+    order = CONSTANT
+    family = MONOMIAL
+  []
+  [stress_xy]
+    order = CONSTANT
+    family = MONOMIAL
+  []
+  [strain_xx]
+    order = CONSTANT
+    family = MONOMIAL
+  []
+  [strain_yy]
+    order = CONSTANT
+    family = MONOMIAL
+  []
+  [strain_xy]
+    order = CONSTANT
+    family = MONOMIAL
+  []
+[]
+
+[Postprocessors]
+
+  [stress_xx]
+    type = ElementAverageValue
+    variable = stress_xx
+    block = 'RingR RingL'
+  []
+  [stress_yy]
+    type = ElementAverageValue
+    variable = stress_yy
+    block = 'RingR RingL'
+  []
+  [stress_xy]
+    type = ElementAverageValue
+    variable = stress_xy
+    block = 'RingR RingL'
+  []
+
+    
+  [strain_xx]
+    type = ElementAverageValue
+    variable = strain_xx
+    block = 'RingR RingL'
+  []
+  [strain_yy]
+    type = ElementAverageValue
+    variable = strain_yy
+    block = 'RingR RingL'
+  []
+  [strain_xy]
+    type = ElementAverageValue
+    variable = strain_xy
+    block = 'RingR RingL'
+  []
+[]
 
 [Physics/SolidMechanics/QuasiStatic]
   [all]
@@ -108,6 +171,7 @@
 
 [Outputs]
   exodus = true
+  csv = true
   print_linear_residuals = false
   perf_graph = true
   time_step_interval = 1

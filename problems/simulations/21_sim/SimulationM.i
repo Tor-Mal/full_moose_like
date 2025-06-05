@@ -75,6 +75,12 @@
     variable = disp_z
     value = 0
   []
+  [Fix_Ring_x]
+    type = DirichletBC
+    boundary = 'RingSeam'
+    variable = disp_x
+    value = 0
+  []
 []
 
 [Materials]

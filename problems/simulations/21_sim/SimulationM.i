@@ -34,16 +34,16 @@
 
 [Contact]
   [jawR_to_ringR]
-    primary = JawR
-    secondary = InnerRingR
+    primary = SSJawR
+    secondary = SSInnerRingR
     model = frictionless
     penalty = 210e9
     normalize_penalty = true
   []
 
   [jawL_to_ringL]
-    primary = JawL
-    secondary = InnerRingL
+    primary = SSJawL
+    secondary = SSInnerRingL
     model = frictionless
     penalty = 210e9
     normalize_penalty = true
@@ -53,31 +53,31 @@
 [BCs]
   [Move_jawR_x]
     type = FunctionDirichletBC
-    boundary = 'JawR'
+    boundary = 'SSJawR'
     function = move_in_+x
     variable = disp_x
   []
   [Move_jawL_x]
     type = FunctionDirichletBC
-    boundary = 'JawL'
+    boundary = 'SSJawL'
     function = move_in_-x
     variable = disp_x
   []
   [Fix_jaw_y]
     type = DirichletBC
-    boundary = 'JawR JawL '
+    boundary = 'SSJawR SSJawL '
     variable = disp_y
     value = 0
   []
   [Fix_All_z]
     type = DirichletBC
-    boundary = 'JawR JawL InnerRingL InnerRingR'
+    boundary = 'SSJawR SSJawL SSInnerRingL SSInnerRingR'
     variable = disp_z
     value = 0
   []
   [Fix_Ring_x]
     type = DirichletBC
-    boundary = 'RingSeam'
+    boundary = 'SSRingSeam'
     variable = disp_x
     value = 0
   []
@@ -114,7 +114,7 @@
   [vonmises_stress_ave]
     type = ElementAverageValue
     variable = vonmises_stress
-    block = 'RingR RingL'  # Or any block(s) you're interested in
+    block = 'VRingR VRingL'  # Or any block(s) you're interested in
   []
 []
 

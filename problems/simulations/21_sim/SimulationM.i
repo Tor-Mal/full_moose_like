@@ -104,11 +104,10 @@
   petsc_options_value = 'lu'
   end_time = 10
   dt = 0.01
-  [Predictor]
-    type = SimplePredictor
-    scale = 1
-  []
-
+  # [Predictor]
+  #   type = SimplePredictor
+  #   scale = 1
+  # []
 []
 
 [Postprocessors]

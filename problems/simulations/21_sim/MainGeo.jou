@@ -54,48 +54,44 @@ mesh volume 10
 
 # === Define Side Sets (for MOOSE BCs & Contact) ===
 undo group begin
+
 sideset 4 add surface 51
-sideset 4 name "JawL"
+sideset 4 name "SSJawL"
 
 sideset 5 add surface 53
-sideset 5 name "JawR"
-
-sideset 7 add surface 20
-sideset 7 name "outer"
+sideset 5 name "SSJawR"
 
 sideset 8 add surface 30
-sideset 8 name "InnerRingL"
+sideset 8 name "SSInnerRingL"
 
 sideset 9 add surface 24
-sideset 9 name "InnerRingR"
+sideset 9 name "SSInnerRingR"
 
 
 sideset 10 add surface 22
-sideset 10 name "RingSeam"
+sideset 10 name "SSRingSeam"
 
 undo group end
 
 # === Define Node Sets (optional, not used for BCs) ===
+
 nodeset 10 add volume 1
 nodeset 10 add volume 4
-nodeset 10 name "Ring"
-
-nodeset 1 add volume 8
-nodeset 1 name "JawR"
+nodeset 10 name "NSFRing"
 
 # === Define Blocks (Material Assignments) ===
 
 block 10 add volume 4
-block 10 name "RingL"
+block 10 name "VRingL"
 
 block 11 add volume 1
-block 11 name "RingR"
+block 11 name "VRingR"
 
 block 12 add volume 9
-block 12 name "JawR"
+block 12 name "VJawR"
 
 block 13 add volume 10
-block 13 name "JawL"
+block 13 name "VJawL"
 
 # === Export to Exodus ===
 undo group begin

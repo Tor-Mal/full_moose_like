@@ -1,5 +1,4 @@
 
-
 [GlobalParams]
     displacements = 'disp_x disp_y disp_z'
 []
@@ -24,74 +23,12 @@
 
 []
 
-[AuxVariables]
-  [stress_xx]
-    order = CONSTANT
-    family = MONOMIAL
-  []
-  [stress_yy]
-    order = CONSTANT
-    family = MONOMIAL
-  []
-  [stress_xy]
-    order = CONSTANT
-    family = MONOMIAL
-  []
-  [strain_xx]
-    order = CONSTANT
-    family = MONOMIAL
-  []
-  [strain_yy]
-    order = CONSTANT
-    family = MONOMIAL
-  []
-  [strain_xy]
-    order = CONSTANT
-    family = MONOMIAL
-  []
-[]
-
-[Postprocessors]
-
-  [stress_xx]
-    type = ElementAverageValue
-    variable = stress_xx
-    block = 'RingR RingL'
-  []
-  [stress_yy]
-    type = ElementAverageValue
-    variable = stress_yy
-    block = 'RingR RingL'
-  []
-  [stress_xy]
-    type = ElementAverageValue
-    variable = stress_xy
-    block = 'RingR RingL'
-  []
-
-    
-  [strain_xx]
-    type = ElementAverageValue
-    variable = strain_xx
-    block = 'RingR RingL'
-  []
-  [strain_yy]
-    type = ElementAverageValue
-    variable = strain_yy
-    block = 'RingR RingL'
-  []
-  [strain_xy]
-    type = ElementAverageValue
-    variable = strain_xy
-    block = 'RingR RingL'
-  []
-[]
-
 [Physics/SolidMechanics/QuasiStatic]
   [all]
     add_variables = true
     strain = FINITE
     generate_output = 'vonmises_stress'
+    material_output_order = SECOND
   []
 []
 
@@ -100,7 +37,7 @@
     primary = JawR
     secondary = InnerRingR
     model = frictionless
-    penalty = 410e8
+    penalty = 210e9
     normalize_penalty = true
   []
 
@@ -108,7 +45,7 @@
     primary = JawL
     secondary = InnerRingL
     model = frictionless
-    penalty = 410e8
+    penalty = 210e9
     normalize_penalty = true
   []
 []
@@ -160,13 +97,20 @@
   petsc_options_iname = '-pc_type'
   petsc_options_value = 'lu'
   end_time = 10
-  dt = 0.1
+  dt = 0.01
   [Predictor]
     type = SimplePredictor
     scale = 1
-
   []
 
+[]
+
+[Postprocessors]
+  [vonmises_stress_ave]
+    type = ElementAverageValue
+    variable = vonmises_stress
+    block = 'RingR RingL'  # Or any block(s) you're interested in
+  []
 []
 
 [Outputs]

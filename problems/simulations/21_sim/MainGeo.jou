@@ -39,8 +39,8 @@ webcut body 5 with plane xplane offset 0
 
 
 # ===Move Jaws ===
-move Volume 9  x .4 include_merged
-move Volume 10  x -.4 include_merged
+move Volume 9  x .495 include_merged
+move Volume 10  x -.495 include_merged
 
 # === Mesh Jaw Surfaces and Volumes ===
 volume 9 scheme tetmesh

@@ -27,7 +27,7 @@
   [all]
     add_variables = true
     strain = FINITE
-    generate_output = 'vonmises_stress'
+    generate_output = 'strain_xx strain_yy strain_zz strain_xy strain_xz strain_yz vonmises_stress'
     material_output_order = SECOND
   []
 []
@@ -75,12 +75,7 @@
     variable = disp_z
     value = 0
   []
-  [Fix_Ring_x]
-    type = DirichletBC
-    boundary = 'SSRingSeam'
-    variable = disp_x
-    value = 0
-  []
+
 []
 
 [Materials]
@@ -115,6 +110,35 @@
     type = ElementAverageValue
     variable = vonmises_stress
     block = 'VRingR VRingL'  # Or any block(s) you're interested in
+  []
+  [strain_xx]
+    type = ElementAverageValue
+    variable = strain_xx
+  []
+
+  [strain_yy]
+    type = ElementAverageValue
+    variable = strain_yy
+  []
+
+  [strain_zz]
+    type = ElementAverageValue
+    variable = strain_zz
+  []
+
+  [strain_xy]
+    type = ElementAverageValue
+    variable = strain_xy
+  []
+
+  [strain_yz]
+    type = ElementAverageValue
+    variable = strain_yz
+  []
+
+  [strain_xz]
+    type = ElementAverageValue
+    variable = strain_xz
   []
 []
 

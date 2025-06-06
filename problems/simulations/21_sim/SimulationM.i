@@ -111,35 +111,67 @@
     variable = vonmises_stress
     block = 'VRingR VRingL'  # Or any block(s) you're interested in
   []
+
   [strain_xx]
     type = ElementAverageValue
     variable = strain_xx
   []
-
   [strain_yy]
     type = ElementAverageValue
     variable = strain_yy
   []
-
   [strain_zz]
     type = ElementAverageValue
     variable = strain_zz
   []
-
   [strain_xy]
     type = ElementAverageValue
     variable = strain_xy
   []
-
   [strain_yz]
     type = ElementAverageValue
     variable = strain_yz
   []
-
   [strain_xz]
     type = ElementAverageValue
     variable = strain_xz
   []
+
+  [max_strain_xx]
+    type = ElementExtremeValue
+    variable = strain_xx
+    value_type = max
+  []
+  [max_strain_xy]
+    type = ElementExtremeValue
+    variable = strain_xy
+    value_type = max
+  []
+  [max_strain_xz]
+    type = ElementExtremeValue
+    variable = strain_xz
+    value_type = max
+  []
+  [max_strain_yy]
+    type = ElementExtremeValue
+    variable = strain_yy
+    value_type = max
+  []
+  [max_strain_yz]
+    type = ElementExtremeValue
+    variable = strain_yz
+    value_type = max
+  []
+  [max_strain_zz]
+    type = ElementExtremeValue
+    variable = strain_zz
+    value_type = max
+  []
+
+
+
+
+
 []
 
 [Outputs]
